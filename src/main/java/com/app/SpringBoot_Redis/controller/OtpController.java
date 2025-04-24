@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,10 +18,15 @@ import lombok.RequiredArgsConstructor;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/otp")
+@RequestMapping("/api")
 @RequiredArgsConstructor
 public class OtpController {
 	private final OtpService otpService;
+	
+	@GetMapping({"/","/home","/status"})
+	public String home() {
+		return "Welcome to onboard";
+	}
 	
 	@PostMapping("/generate")
 	public ResponseEntity<?> generate(@RequestParam String email){
